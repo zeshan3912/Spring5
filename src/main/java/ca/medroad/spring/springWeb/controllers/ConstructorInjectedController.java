@@ -1,7 +1,9 @@
 package ca.medroad.spring.springWeb.controllers;
 
 import ca.medroad.spring.springWeb.services.GreetingService;
+import org.springframework.stereotype.Controller;
 
+@Controller
 public class ConstructorInjectedController {
 
     private GreetingService greetingService;
