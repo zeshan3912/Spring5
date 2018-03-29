@@ -1,6 +1,7 @@
 
 package ca.medroad.spring.springWeb.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -8,6 +9,7 @@ import java.io.Serializable;
 
 @Data
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class User implements Serializable {
 
     private final static long serialVersionUID = -8559054099904421964L;
@@ -18,6 +20,7 @@ public class User implements Serializable {
 
     private String gender;
 
+    @OneToOne(cascade = CascadeType.ALL)
     private Name name;
 
     @OneToOne(cascade = CascadeType.ALL)

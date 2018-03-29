@@ -20,6 +20,8 @@ public class DbFixturesLoader implements ApplicationListener<ContextRefreshedEve
     private String api_url;
     private UserService userService;
 
+//    @Autowired
+//    private UserRepository userRepository;
 
     public DbFixturesLoader(@Value("${api_url}") String api_url, UserService userService) {
         this.restTemplate = new RestTemplate();
@@ -36,6 +38,8 @@ public class DbFixturesLoader implements ApplicationListener<ContextRefreshedEve
         if (users.isEmpty()) {
             UserData userData = restTemplate.getForObject(api_url, UserData.class);
 
+            // if we don't want to use foreach loop then we can use this method as well
+            //userRepository.saveAll(userData.getData());
 
             for (User user : userData.getData()) {
                 userService.createUser(user);
